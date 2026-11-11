@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, monospace;
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Design tokens. Dark mode follows nativeTheme.themeSource (set from Settings). ── */
+:root {
+  color-scheme: light;
+  --bg: #f7f7f5;
+  --sidebar: rgba(246, 246, 244, 0.72);
+  --surface: #ffffff;
+  --surface-2: #f3f3f0;
+  --surface-3: #ebebe7;
+  --border: rgba(20, 20, 30, 0.08);
+  --border-strong: rgba(20, 20, 30, 0.14);
+  --text: #18181b;
+  --text-2: #5b5b64;
+  --text-3: #93939c;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: rgba(79, 70, 229, 0.09);
+  --accent-text: #4338ca;
+  --shadow: 0 1px 2px rgba(16, 16, 24, 0.04), 0 2px 8px rgba(16, 16, 24, 0.04);
+  --shadow-lg: 0 12px 40px rgba(16, 16, 24, 0.14), 0 2px 8px rgba(16, 16, 24, 0.06);
+  --grid: rgba(20, 20, 30, 0.06);
+
+  /* Grade bands (indicators always paired with the letter) */
+  --grade-a: #1a9a50; --grade-a-soft: rgba(26, 154, 80, 0.11); --grade-a-text: #12733b;
+  --grade-b: #2a78d6; --grade-b-soft: rgba(42, 120, 214, 0.11); --grade-b-text: #1c5cab;
+  --grade-c: #d4a000; --grade-c-soft: rgba(212, 160, 0, 0.14); --grade-c-text: #8a6600;
+  --grade-d: #e8681e; --grade-d-soft: rgba(232, 104, 30, 0.12); --grade-d-text: #b04a0f;
+  --grade-f: #dc3d3d; --grade-f-soft: rgba(220, 61, 61, 0.11); --grade-f-text: #b02a2a;
+  --grade-none: #a1a1aa; --grade-none-soft: rgba(120, 120, 130, 0.1); --grade-none-text: #5b5b64;
+
+  /* Categorical series (dataviz reference palette, validated order) */
+  --series-1: #2a78d6; --series-2: #eb6834; --series-3: #1baf7a; --series-4: #eda100;
+  --series-5: #e87ba4; --series-6: #008300; --series-7: #6250d6; --series-8: #e34948;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #161618;
+    --sidebar: rgba(30, 30, 33, 0.6);
+    --surface: #1d1d20;
+    --surface-2: #252529;
+    --surface-3: #2e2e33;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.13);
+    --text: #ededf0;
+    --text-2: #a8a8b2;
+    --text-3: #6f6f79;
+    --accent: #7c7cf4;
+    --accent-hover: #8f8ff7;
+    --accent-soft: rgba(124, 124, 244, 0.14);
+    --accent-text: #a5a5fa;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+    --grid: rgba(255, 255, 255, 0.06);
+
+    --grade-a: #34b86c; --grade-a-soft: rgba(52, 184, 108, 0.15); --grade-a-text: #5fd391;
+    --grade-b: #4a90e8; --grade-b-soft: rgba(74, 144, 232, 0.16); --grade-b-text: #84b4f2;
+    --grade-c: #e0b324; --grade-c-soft: rgba(224, 179, 36, 0.15); --grade-c-text: #ecc95a;
+    --grade-d: #f08a45; --grade-d-soft: rgba(240, 138, 69, 0.15); --grade-d-text: #f6a874;
+    --grade-f: #ef6464; --grade-f-soft: rgba(239, 100, 100, 0.15); --grade-f-text: #f59090;
+    --grade-none: #6f6f79; --grade-none-soft: rgba(255, 255, 255, 0.06); --grade-none-text: #a8a8b2;
+
+    --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70; --series-4: #c98500;
+    --series-5: #d55181; --series-6: #008300; --series-7: #9085e9; --series-8: #e66767;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-sidebar: var(--sidebar);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --shadow-card: var(--shadow);
+  --shadow-pop: var(--shadow-lg);
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: transparent; /* lets the sidebar vibrancy show through */
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  cursor: default;
+  overflow: hidden;
+}
+input, textarea, select, [contenteditable] { user-select: text; }
+.tnum { font-variant-numeric: tabular-nums; }
+.drag { -webkit-app-region: drag; }
+.no-drag { -webkit-app-region: no-drag; }
+::selection { background: var(--accent-soft); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+/* ── Windows ──────────────────────────────────────────────────────────────
+   No vibrancy: give the sidebar a solid tint, drop the traffic-light spacer, and keep page-header
+   actions clear of the caption buttons Windows draws in the top-right (~138px). */
+.platform-win32 { --sidebar: #efefec; }
+@media (prefers-color-scheme: dark) { .platform-win32 { --sidebar: #1b1b1e; } }
+.platform-win32 .titlebar-spacer { height: 18px; }
+.platform-win32 .page-header { padding-right: 160px; }
+.platform-win32 .window-top-bar { padding-right: 150px; }
+
+/* Thin overlay scrollbars like native macOS */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 10px; border: 3px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ── Motion ──────────────────────────────────────────────────────────────
+   One easing family (ease-out-quint) and short durations: 150ms for state changes,
+   220–280ms for things entering, ~70% of that for things leaving. */
+:root {
+  --dur-fast: 150ms;
+  --dur-enter: 260ms;
+  --dur-exit: 170ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes pop-in { from { opacity: 0; transform: scale(0.97) translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes pop-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(0.98) translateY(4px); } }
+@keyframes drawer-in { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes drawer-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(28px); } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes row-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-fade { animation: fade-in var(--dur-enter) var(--ease-out) both; }
+.animate-fade-out { animation: fade-out var(--dur-exit) var(--ease-in) both; }
+.animate-pop { animation: pop-in var(--dur-enter) var(--ease-out) both; }
+.animate-pop-out { animation: pop-out var(--dur-exit) var(--ease-in) both; }
+.animate-drawer { animation: drawer-in 300ms var(--ease-out) both; }
+.animate-drawer-out { animation: drawer-out var(--dur-exit) var(--ease-in) both; }
+.animate-rise { animation: rise-in 420ms var(--ease-out) both; }
+.animate-row-in { animation: row-in var(--dur-enter) var(--ease-out) both; }
+/* Kept for the first paint (onboarding); page-to-page uses view transitions below. */
+.animate-page { animation: rise-in 360ms var(--ease-out) both; }
+.spin { animation: spin 0.9s linear infinite; }
+
+/* Page changes: the sidebar stays put; only the content cross-fades with a small lift. */
+#main-scroll { view-transition-name: page; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+::view-transition-old(page) { animation: fade-out 120ms var(--ease-in) both; }
+::view-transition-new(page) { animation: rise-in 280ms var(--ease-out) both; }
+::view-transition-group(page) { animation-duration: 280ms; }
+
+/* Tactile press feedback on buttons. */
+button:not(:disabled):active { transform: scale(0.98); }
+button { transition-property: color, background-color, border-color, box-shadow, transform, opacity; transition-duration: var(--dur-fast); transition-timing-function: var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; }
+  ::view-transition-old(page), ::view-transition-new(page) { animation: none; }
+  button:not(:disabled):active { transform: none; }
+}
+
+/* Recharts polish */
+.recharts-cartesian-axis-tick-value { font-size: 11px; fill: var(--text-3); }
+.recharts-surface:focus, .recharts-wrapper:focus, .recharts-sector:focus { outline: none; }

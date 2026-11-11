@@ -1,0 +1,87 @@
+# ── Dependencies ─────────────────────────────────────────────
+node_modules/
+.pnpm-store/
+.yarn/
+.npm/
+
+# ── Build output (regenerate with npm run build / make:dmg / make:win) ──
+out/
+dist/
+dist-win/
+GradeKiwi-Windows/
+release/
+*.dmg
+*.exe
+*.blockmap
+*.app/
+*.zip
+*.7z
+*.nsis.7z
+*.tsbuildinfo
+.vite/
+.electron-vite/
+
+# ── Tests & coverage ─────────────────────────────────────────
+coverage/
+.vitest/
+*.lcov
+
+# ── Private data: never commit grades, credentials or databases ──
+# Local app data (the app stores these in the OS app-data folder, but guard against copies)
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite
+*.sqlite3
+credentials.enc
+*.enc
+# Grade exports and imports made with the app (contain real student data)
+GradeKiwi-*.json
+GradeKiwi-*.csv
+*-gradebook.xml
+# Environment files (e.g. FCPS_USER / FCPS_PASS for the opt-in live test)
+.env
+.env.*
+!.env.example
+
+# ── Code-signing / notarization secrets ──────────────────────
+*.p12
+*.pfx
+*.cer
+*.crt
+*.key
+*.pem
+*.mobileprovision
+*.provisionprofile
+.apple-credentials*
+electron-builder.env
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── OS & editor clutter ──────────────────────────────────────
+.DS_Store
+.AppleDouble
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.history/
+
+# ── Local tooling ────────────────────────────────────────────
+.claude/settings.local.json
+.cache/
+tmp/
+temp/

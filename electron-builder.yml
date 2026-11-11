@@ -1,0 +1,68 @@
+appId: org.gradekiwi.app
+productName: GradeKiwi
+copyright: Copyright © 2026 Zaid Rasti
+directories:
+  output: dist
+  buildResources: build
+files:
+  - out/**/*
+  - package.json
+asar: true
+mac:
+  category: public.app-category.education
+  icon: build/icon.png
+  target:
+    - target: dmg
+      arch: [universal]
+  hardenedRuntime: true
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # Ad-hoc signature ("-") so the app launches on Apple Silicon without a developer account.
+  # For distribution: set CSC_LINK/CSC_KEY_PASSWORD (Developer ID) and remove this line,
+  # then enable notarize with APPLE_ID / APPLE_APP_SPECIFIC_PASSWORD / APPLE_TEAM_ID.
+  identity: "-"
+  notarize: false
+  minimumSystemVersion: "12.0"
+  extendInfo:
+    NSHumanReadableCopyright: Copyright © 2026 Zaid Rasti
+dmg:
+  title: ${productName} ${version}
+  artifactName: ${productName}-${version}-${arch}.${ext}
+  background: build/dmg-background.png
+  icon: build/icon.png
+  iconSize: 112
+  window:
+    width: 600
+    height: 400
+  contents:
+    - x: 160
+      y: 205
+    - x: 440
+      y: 205
+      type: link
+      path: /Applications
+
+# ── Windows ───────────────────────────────────────────────────────────────
+# Built with `npm run make:win`; the finished .exe files are collected into GradeKiwi-Windows/.
+win:
+  icon: build/icon.png
+  executableName: GradeKiwi
+  target:
+    - target: nsis      # installer: one .exe containing both x64 and ARM64 builds
+      arch: [x64, arm64]
+    - target: portable  # single .exe that runs without installing
+      arch: [x64]
+  # Unsigned: Windows SmartScreen will warn on first run. To sign, set CSC_LINK / CSC_KEY_PASSWORD
+  # (an Authenticode certificate) before building.
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: GradeKiwi
+  uninstallDisplayName: GradeKiwi
+  deleteAppDataOnUninstall: false
+  artifactName: ${productName}-Setup-${version}.${ext}
+portable:
+  artifactName: ${productName}-${version}-Portable.${ext}
